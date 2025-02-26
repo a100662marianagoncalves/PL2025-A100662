@@ -23,7 +23,7 @@ for linha in csv:
 if linha_atual:
     linhas_juntas.append(linha_atual)
 
-#ignorando o cabeçalho
+#ignor o cabeçalho
 for linha in linhas_juntas[1:]:
     dados = re.split(r';\s*', linha)
 
@@ -49,7 +49,7 @@ for linha in linhas_juntas[1:]:
     else:
         obras_por_periodo[periodo] = [titulo]
 
-#  alfabeticamente
+#  alfabetica
 compositores_ordenados = sorted(compositores)
 
 for periodo in obras_por_periodo:
