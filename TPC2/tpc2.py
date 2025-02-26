@@ -1,15 +1,14 @@
 import sys
 import re
 
-# Ler o arquivo CSV da entrada padrão
+
 csv = sys.stdin.read().splitlines()
 
-# Inicializar variáveis
 compositores = set()
 distribuicao_periodo = {}
 obras_por_periodo = {}
 
-# Juntar linhas quebradas
+# tratar das linhas
 linhas_juntas = []
 linha_atual = ""
 
@@ -24,11 +23,11 @@ for linha in csv:
 if linha_atual:
     linhas_juntas.append(linha_atual)
 
-#Processar cada linha do CSV (ignorando o cabeçalho)
+#ignorando o cabeçalho
 for linha in linhas_juntas[1:]:
     dados = re.split(r';\s*', linha)
 
-    # Verificar se a linha tem o número correto de colunas
+    # eliminar linhas com ; diferente das colunas
     if len(dados) != 7:
         continue
     
@@ -37,29 +36,25 @@ for linha in linhas_juntas[1:]:
     titulo = dados[0].strip()
     periodo = dados[3].strip()
 
-    # Adicionar compositor à lista de compositores
+#tarefa1
     compositores.add(compositor)
-
-    # Atualizar a distribuição das obras por período
+#tarefa2
     if periodo in distribuicao_periodo:
         distribuicao_periodo[periodo] += 1
     else:
         distribuicao_periodo[periodo] = 1
-
-    # Atualizar o dicionário de obras por período
+#tarefa3
     if periodo in obras_por_periodo:
         obras_por_periodo[periodo].append(titulo)
     else:
         obras_por_periodo[periodo] = [titulo]
 
-# Ordenar compositores alfabeticamente
+#  alfabeticamente
 compositores_ordenados = sorted(compositores)
 
-# Ordenar títulos das obras por período
 for periodo in obras_por_periodo:
     obras_por_periodo[periodo].sort()
 
-# Imprimir os resultados
 for compositor in compositores_ordenados:
     print(compositor)
 
@@ -71,6 +66,3 @@ print("---------------------------")
 for periodo, obras in obras_por_periodo.items():
     print(f"{periodo}: {obras}")
 
-# Exemplo de uso
-# Para testar o script, você pode redirecionar a entrada de um arquivo CSV:
-# python tpc2.py < obras.csv
