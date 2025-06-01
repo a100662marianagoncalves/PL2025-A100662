@@ -1,3 +1,4 @@
 # PL2025
 
 **Autor**: Mariana Gonçalves, a100662
+Neste tpc criei uma máquina de vendas automática usando análise léxica com a biblioteca PLY. Ele começa por carregar o stock de produtos de um ficheiro JSON e mostra uma mensagem de boas-vindas com a data atual. O utilizador pode interagir com a máquina dando comandos diretamente, como inserir moedas ou selecionar produtos. O programa reconhece esses comandos com expressões regulares e atualiza o saldo, verifica se o produto existe e está disponível, e processa a compra se houver saldo suficiente. Ao sair, calcula e imprime o troco e atualiza o stock.
